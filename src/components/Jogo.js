@@ -1,28 +1,31 @@
 import React from "react";
 
-
 export default function Jogo(props) {
   const hangedManSrc = [
-    { state0: "assets/forca0.png" },
-    { state1: "assets/forca1.png" },
-    { state2: "assets/forca2.png" },
-    { state3: "assets/forca3.png" },
-    { state4: "assets/forca4.png" },
-    { state5: "assets/forca5.png" },
-    { state6: "assets/forca6.png" },
+    "assets/forca0.png",
+    "assets/forca1.png",
+    "assets/forca2.png",
+    "assets/forca3.png",
+    "assets/forca4.png",
+    "assets/forca5.png",
+    "assets/forca6.png",
   ];
 
   function chooseWord() {
+    let start = true
+    props.setStart(start)
+    console.log(props.start)
     let word = props.words[Math.floor(Math.random() * props.words.length)];
     props.setWord(word);
-    console.log(props.word)
+    console.log(props.word);
     props.setdashArray(Array(word.length).fill("_"));
+    
   }
 
   return (
     <>
-      <Imagem src={hangedManSrc[0].state0} />
-      <button onClick={chooseWord} className="chooseWordButton">    
+      <Imagem src={hangedManSrc[props.errors]} />
+      <button onClick={chooseWord} className="chooseWordButton">
         Escolher palavra
       </button>
       <Word palavra={props.dashArray.join(" ")} />
@@ -37,8 +40,6 @@ function Imagem(props) {
     </div>
   );
 }
-
-
 
 function Word(props) {
   return <div className="word">{props.palavra}</div>;

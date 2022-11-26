@@ -42,20 +42,31 @@ export default function Letras(props){
     
     let word = props.word;
     console.log(word)
-    let letter = l;
     props.setLetter(l);
     let dashArray = props.dashArray;
     let setdashArray = props.setdashArray;
 
-    if (word.includes(letter)) {
+    if (word.includes(l)) {
       for (let i = 0; i < word.length; i++) {
-        if (word[i] === letter) {
-          dashArray[i] = letter;
+        if (word[i] === l) {
+          dashArray[i] = l;
           setdashArray(dashArray);
         }
       }
     }
-    
+    else{
+      let errors = props.errors + 1;
+      props.setErrors(errors);
+      console.log(errors)
+      if(errors === 6){
+        
+        setTimeout(() => {
+          alert("Você perdeu!");
+          window.location.reload();
+        }, 500)
+        
+      }      
+    }  
   }
 
   

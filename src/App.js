@@ -10,11 +10,12 @@ import words from "./palavras";
 function App() {
   // choose random word from words
   const [word, setWord] = useState('');
+  let   [letter, setLetter] = useState("");
+  let   [dashArray, setdashArray] = useState(Array(word.length).fill("_"));
+  const [errors, setErrors] = useState(0)  
+  const [guess, setGuess] = useState("");
+  const [start, setStart] = useState(false);
   
-  
-  
-  let [letter, setLetter] = useState("");
-  let [dashArray, setdashArray] = useState(Array(word.length).fill("_"));
   
 
 
@@ -27,8 +28,11 @@ function App() {
         word={word}
         dashArray={dashArray}
         setdashArray={setdashArray}
-        words = {words}
-        setWord = {setWord}
+        words={words}
+        setWord={setWord}
+        errors={errors}
+        start = {start}
+        setStart = {setStart}
       />
       <div className="lower">
         <Letras
@@ -37,8 +41,15 @@ function App() {
           dashArray={dashArray}
           setdashArray={setdashArray}
           setLetter={setLetter}
+          errors={errors}
+          setErrors={setErrors}
         />
-        <Chute />
+        <Chute
+          word={word}
+          guess={guess}
+          setGuess={setGuess}
+          setErrors={setErrors}
+        />
       </div>
     </div>
   );
