@@ -12,12 +12,19 @@ export default function Jogo(props) {
     { state6: "assets/forca6.png" },
   ];
 
-  
+  function chooseWord() {
+    let word = props.words[Math.floor(Math.random() * props.words.length)];
+    props.setWord(word);
+    console.log(props.word)
+    props.setdashArray(Array(word.length).fill("_"));
+  }
 
   return (
     <>
       <Imagem src={hangedManSrc[0].state0} />
-      <ChooseWordButton letter={props.letter} />
+      <button onClick={chooseWord} className="chooseWordButton">    
+        Escolher palavra
+      </button>
       <Word palavra={props.dashArray.join(" ")} />
     </>
   );
@@ -31,15 +38,7 @@ function Imagem(props) {
   );
 }
 
-function ChooseWordButton(props) {
-  return (
-    <button      
-      
-      className="chooseWordButton">
-      Escolher palavra
-    </button>
-  );
-}
+
 
 function Word(props) {
   return <div className="word">{props.palavra}</div>;

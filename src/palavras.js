@@ -1,6 +1,6 @@
 const palavras = [
-  "abacaxi",
-  "banana"
+  "hexa",
+  "brasil"
 ];
 
 export default palavras;

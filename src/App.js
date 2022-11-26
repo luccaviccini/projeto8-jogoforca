@@ -9,7 +9,7 @@ import words from "./palavras";
 
 function App() {
   // choose random word from words
-  const [word, setWord] = useState(words[Math.floor(Math.random() * words.length)]);
+  const [word, setWord] = useState('');
   
   
   
@@ -17,7 +17,6 @@ function App() {
   let [dashArray, setdashArray] = useState(Array(word.length).fill("_"));
   
 
-  
 
 
 
@@ -28,6 +27,8 @@ function App() {
         word={word}
         dashArray={dashArray}
         setdashArray={setdashArray}
+        words = {words}
+        setWord = {setWord}
       />
       <div className="lower">
         <Letras
