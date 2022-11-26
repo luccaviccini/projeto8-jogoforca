@@ -1,21 +1,42 @@
 import Jogo from "./components/Jogo";
 import Letras from "./components/Letras";
 import Chute from "./components/Chute"
+import React, {useState} from "react";
+import words from "./palavras";
 
 
 
 
 function App() {
+  // choose random word from words
+  const [word, setWord] = useState(words[Math.floor(Math.random() * words.length)]);
+  
+  
+  
+  let [letter, setLetter] = useState("");
+  let [dashArray, setdashArray] = useState(Array(word.length).fill("_"));
+  
 
+  
 
 
 
   return (
     <div className="app">
-      <Jogo />
-
+      <Jogo
+        letter={letter}
+        word={word}
+        dashArray={dashArray}
+        setdashArray={setdashArray}
+      />
       <div className="lower">
-        <Letras />
+        <Letras
+          letter={letter}
+          word={word}
+          dashArray={dashArray}
+          setdashArray={setdashArray}
+          setLetter={setLetter}
+        />
         <Chute />
       </div>
     </div>
