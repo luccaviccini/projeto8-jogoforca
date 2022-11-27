@@ -16,10 +16,6 @@ function App() {
   const [guess, setGuess] = useState("");
   const [start, setStart] = useState(false);
   
-  
-
-
-
 
   return (
     <div className="app">
@@ -43,12 +39,14 @@ function App() {
           setLetter={setLetter}
           errors={errors}
           setErrors={setErrors}
+          start = {start}
         />
         <Chute
           word={word}
           guess={guess}
           setGuess={setGuess}
           setErrors={setErrors}
+          start = {start}
         />
       </div>
     </div>

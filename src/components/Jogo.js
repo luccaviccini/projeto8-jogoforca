@@ -12,8 +12,7 @@ export default function Jogo(props) {
   ];
 
   function chooseWord() {
-    let start = true
-    props.setStart(start)
+    props.setStart(true)
     console.log(props.start)
     let word = props.words[Math.floor(Math.random() * props.words.length)];
     props.setWord(word);
@@ -42,5 +41,5 @@ function Imagem(props) {
 }
 
 function Word(props) {
-  return <div className="word">{props.palavra}</div>;
+  return <div className="word red">{props.palavra}</div>;
 }

@@ -1,4 +1,6 @@
-export default function Letras(props){
+import { useState } from "react";
+
+export default function Letras(props) {
   //array with all letters of alphabet
   const alphabet = [
     "a",
@@ -29,19 +31,34 @@ export default function Letras(props){
     "z",
   ];
 
-
   return (
     <div className="letras">
-        {alphabet.map((l) => (
-            <button onClick= {() => handleClick(l)}key= {l}className="letterButtonEnabled">{l.toUpperCase()}</button>
-        ))}            
+      {alphabet.map((l) => (
+        <LetterButton key = {l} l={l} {...props} />
+      ))}
     </div>
   );
 
+  
+}
+
+function LetterButton(props){
+  const [clicked, setClicked] = useState(false);
+
+  return (
+    <button
+      disabled={!props.start ? true : clicked}
+      onClick={() => handleClick(props.l)}
+      key={props.l}
+      className={!props.start || clicked ? "letterButtonDisabled" : "letterButtonEnabled"}>
+      {props.l.toUpperCase()}
+    </button>
+  );
+
   function handleClick(l) {
-    
+    setClicked(true)
     let word = props.word;
-    console.log(word)
+    console.log(word);
     props.setLetter(l);
     let dashArray = props.dashArray;
     let setdashArray = props.setdashArray;
@@ -53,21 +70,17 @@ export default function Letras(props){
           setdashArray(dashArray);
         }
       }
-    }
-    else{
+    } else {
       let errors = props.errors + 1;
       props.setErrors(errors);
-      console.log(errors)
-      if(errors === 6){
-        
+      console.log(errors);
+      if (errors === 6) {
         setTimeout(() => {
           alert("Você perdeu!");
           window.location.reload();
-        }, 500)
-        
-      }      
-    }  
+        }, 500);
+      }
+    }
   }
-
   
 }
