@@ -9,12 +9,32 @@ import words from "./palavras";
 
 function App() {
   // choose random word from words
-  const [word, setWord] = useState('');
-  let   [letter, setLetter] = useState("");
-  let   [dashArray, setdashArray] = useState(Array(word.length).fill("_"));
-  const [errors, setErrors] = useState(0)  
-  const [guess, setGuess] = useState("");
-  const [start, setStart] = useState(false);
+
+  // object with default states
+  const defaultState = {
+    word: "", 
+    guess: "",
+    dashArray: [],
+    errors: 0,
+    start: false,
+    letter: "",
+    win: false,
+    lose: false
+  }
+
+
+  const [word, setWord] = useState(defaultState.word);
+  console.log(word)
+  let   [letter, setLetter] = useState(defaultState.letter);
+  let   [dashArray, setdashArray] = useState(defaultState.dashArray);
+  const [errors, setErrors] = useState(defaultState.errors); 
+  console.log(errors)
+  const [guess, setGuess] = useState(defaultState.guess);
+  const [start, setStart] = useState(defaultState.start);
+  const [win, setWin] = useState(defaultState.win);
+  console.log(win)
+  const [lose, setLose] = useState(defaultState.lose);
+
   
 
   return (
@@ -27,8 +47,12 @@ function App() {
         words={words}
         setWord={setWord}
         errors={errors}
-        start = {start}
-        setStart = {setStart}
+        start={start}
+        setStart={setStart}
+        win={win}
+        setWin={setWin}
+        lose={lose}
+        setLose={setLose}
       />
       <div className="lower">
         <Letras
@@ -39,14 +63,22 @@ function App() {
           setLetter={setLetter}
           errors={errors}
           setErrors={setErrors}
-          start = {start}
+          start={start}
+          win={win}
+          setWin={setWin}
+          lose={lose}
+          setLose={setLose}
         />
         <Chute
           word={word}
           guess={guess}
           setGuess={setGuess}
           setErrors={setErrors}
-          start = {start}
+          start={start}
+          win={win}
+          setWin={setWin}
+          lose={lose}
+          setLose={setLose}
         />
       </div>
     </div>

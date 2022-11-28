@@ -58,7 +58,6 @@ function LetterButton(props){
   function handleClick(l) {
     setClicked(true)
     let word = props.word;
-    console.log(word);
     props.setLetter(l);
     let dashArray = props.dashArray;
     let setdashArray = props.setdashArray;
@@ -73,12 +72,9 @@ function LetterButton(props){
     } else {
       let errors = props.errors + 1;
       props.setErrors(errors);
-      console.log(errors);
-      if (errors === 6) {
-        setTimeout(() => {
-          alert("Você perdeu!");
-          window.location.reload();
-        }, 500);
+      if (errors === 6 || props.lose) {
+        props.setLose(true);
+        console.log("Você perdeu!");
       }
     }
   }

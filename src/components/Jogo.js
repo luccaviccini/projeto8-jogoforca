@@ -13,10 +13,8 @@ export default function Jogo(props) {
 
   function chooseWord() {
     props.setStart(true)
-    console.log(props.start)
     let word = props.words[Math.floor(Math.random() * props.words.length)];
-    props.setWord(word);
-    console.log(props.word);
+    props.setWord(word);    
     props.setdashArray(Array(word.length).fill("_"));
     
   }
@@ -27,7 +25,7 @@ export default function Jogo(props) {
       <button onClick={chooseWord} className="chooseWordButton">
         Escolher palavra
       </button>
-      <Word palavra={props.dashArray.join(" ")} />
+      <Word lose = {props.lose} win = {props.win}palavra={props.win || props.lose ? props.word :props.dashArray.join(" ")} />
     </>
   );
 }
@@ -41,5 +39,13 @@ function Imagem(props) {
 }
 
 function Word(props) {
-  return <div className="word red">{props.palavra}</div>;
+  console.log(props)
+  return (
+    <div
+      className={props.win? "word green" : props.lose? "word red" : "word black"}>
+      {props.palavra}
+    </div>
+  );
 }
+
+

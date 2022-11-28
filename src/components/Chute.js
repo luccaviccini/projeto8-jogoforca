@@ -3,13 +3,12 @@ export default function Chute(props) {
     let word = props.word;
     let guess = props.guess;
     if (word === guess) {
-      alert("Você acertou!");
+      props.setWin(true);
+      console.log("Você acertou!");
     } else {
-      props.setErrors(6);
-      setTimeout(() => {
-        alert("Você perdeu!");
-        window.location.reload();
-      }, 500);
+      props.setErrors(6); 
+      props.setLose(true);
+      console.log("Você perdeu!");      
     }
   }
 
@@ -21,7 +20,7 @@ export default function Chute(props) {
         onChange={(e) => props.setGuess(e.target.value)}
         type="text"
         className="chuteInput"
-        placeholder="Chute"></input>
+        placeholder=""></input>
       <button
         disabled={!props.start}
         onClick={handleClick}
