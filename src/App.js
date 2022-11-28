@@ -22,18 +22,27 @@ function App() {
     lose: false
   }
 
-
+  const [start, setStart] = useState(defaultState.start);
+  
   const [word, setWord] = useState(defaultState.word);
-  console.log(word)
+  console.log("Word: ", word)
   let   [letter, setLetter] = useState(defaultState.letter);
   let   [dashArray, setdashArray] = useState(defaultState.dashArray);
+  console.log("dashArray", dashArray)
   const [errors, setErrors] = useState(defaultState.errors); 
-  console.log(errors)
+  console.log("Errors: ",errors)
   const [guess, setGuess] = useState(defaultState.guess);
-  const [start, setStart] = useState(defaultState.start);
+  
+  console.log("Start: ",start);
   const [win, setWin] = useState(defaultState.win);
-  console.log(win)
+  console.log("Win: ",win)
   const [lose, setLose] = useState(defaultState.lose);
+  console.log("Lose: ",lose)
+
+  const [lettersClicked , setlettersClicked] = useState([]);
+  console.log("lettersClicked: ",lettersClicked)
+
+  
 
   
 
@@ -64,10 +73,13 @@ function App() {
           errors={errors}
           setErrors={setErrors}
           start={start}
+          setStart={setStart}
           win={win}
           setWin={setWin}
           lose={lose}
           setLose={setLose}
+          lettersClicked={lettersClicked}
+          setlettersClicked={setlettersClicked}
         />
         <Chute
           word={word}
@@ -75,6 +87,7 @@ function App() {
           setGuess={setGuess}
           setErrors={setErrors}
           start={start}
+          setStart={setStart}
           win={win}
           setWin={setWin}
           lose={lose}

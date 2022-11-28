@@ -43,20 +43,27 @@ export default function Letras(props) {
 }
 
 function LetterButton(props){
-  const [clicked, setClicked] = useState(false);
+
+    const [clicked, setClicked] = useState({state: false, class: "letterButtonDisabled"});
+
+  
+
 
   return (
     <button
-      disabled={!props.start ? true : clicked}
+      disabled={!props.start ||props.win || props.lose? true : props.start? false: clicked.state}
       onClick={() => handleClick(props.l)}
       key={props.l}
-      className={!props.start || clicked ? "letterButtonDisabled" : "letterButtonEnabled"}>
+      className={!props.start ||clicked.state || props.win|| props.lose ? "letterButtonDisabled" : "letterButtonEnabled"}>
+        
       {props.l.toUpperCase()}
     </button>
   );
 
   function handleClick(l) {
-    setClicked(true)
+    let arrClickedLetters  = [...props.lettersClicked, l]
+    props.setlettersClicked(arrClickedLetters);
+    setClicked({ state: true, class: "letterButtonEnabled" });
     let word = props.word;
     props.setLetter(l);
     let dashArray = props.dashArray;
@@ -67,6 +74,12 @@ function LetterButton(props){
         if (word[i] === l) {
           dashArray[i] = l;
           setdashArray(dashArray);
+          // check if string corresponding to dash array === word
+          if (dashArray.join("") === word) {
+            props.setWin(true);
+            console.log("Você acertou!");
+            props.setStart(false);
+          }
         }
       }
     } else {
