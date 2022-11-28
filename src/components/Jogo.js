@@ -19,6 +19,12 @@ export default function Jogo(props) {
       props.setWin(false);
       // lose false
       props.setLose(false);
+      // setclickedLetters to empty array
+      props.setlettersClicked([]);
+      // set errors to 0
+      props.setErrors(0);
+      // set guess to ''
+      props.setGuess('');
       // choose a random word
       let word = props.words[Math.floor(Math.random() * props.words.length)];
       // set word
@@ -36,13 +42,21 @@ export default function Jogo(props) {
   return (
     <>
       <Imagem src={hangedManSrc[props.errors]} />
-      <button onClick={chooseWord} className="chooseWordButton">
+      <button
+        data-test="choose-word"
+        onClick={chooseWord}
+        className="chooseWordButton">
         Escolher palavra
       </button>
-      <Word 
-      lose = {props.lose} 
-      win = {props.win}
-      palavra={props.win || props.lose ? props.word :props.dashArray.join(" ")} />
+      <Word
+        lose={props.lose}
+        win={props.win}
+        palavra={
+          props.win || props.lose ? props.word : props.dashArray.join(" ")
+        }
+        answer = {props.word}
+        
+      />
     </>
   );
 }
@@ -50,7 +64,7 @@ export default function Jogo(props) {
 function Imagem(props) {
   return (
     <div className="hangedMan">
-      <img src={props.src} alt={props.src}></img>
+      <img data-test="game-image" src={props.src} alt={props.src}></img>
     </div>
   );
 }
@@ -58,7 +72,11 @@ function Imagem(props) {
 function Word(props) {
   return (
     <div
-      className={props.win? "word green" : props.lose? "word red" : "word black"}>
+      data-test="word"
+      data-answer={props.answer}
+      className={
+        props.win ? "word green" : props.lose ? "word red" : "word black"
+      }>
       {props.palavra}
     </div>
   );

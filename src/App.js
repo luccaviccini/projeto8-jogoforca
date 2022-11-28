@@ -27,6 +27,7 @@ function App() {
   const [word, setWord] = useState(defaultState.word);
   console.log("Word: ", word)
   let   [letter, setLetter] = useState(defaultState.letter);
+  console.log("Letter: ", letter)
   let   [dashArray, setdashArray] = useState(defaultState.dashArray);
   console.log("dashArray", dashArray)
   const [errors, setErrors] = useState(defaultState.errors); 
@@ -41,6 +42,8 @@ function App() {
 
   const [lettersClicked , setlettersClicked] = useState([]);
   console.log("lettersClicked: ",lettersClicked)
+  // console log if letters clicked includes letter
+  console.log("Includes Letter:  ",lettersClicked.includes(letter))
 
   
 
@@ -56,12 +59,15 @@ function App() {
         words={words}
         setWord={setWord}
         errors={errors}
+        setErrors={setErrors}
         start={start}
         setStart={setStart}
         win={win}
         setWin={setWin}
         lose={lose}
         setLose={setLose}
+        setlettersClicked = {setlettersClicked}
+        setGuess = {setGuess}
       />
       <div className="lower">
         <Letras
@@ -76,10 +82,9 @@ function App() {
           setStart={setStart}
           win={win}
           setWin={setWin}
-          lose={lose}
-          setLose={setLose}
-          lettersClicked={lettersClicked}
-          setlettersClicked={setlettersClicked}
+          lose={lose} setLose={setLose}          
+          lettersClicked={lettersClicked} setlettersClicked={setlettersClicked}
+          
         />
         <Chute
           word={word}

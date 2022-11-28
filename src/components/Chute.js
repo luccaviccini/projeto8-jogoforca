@@ -19,12 +19,15 @@ export default function Chute(props) {
     <div className="chute">
       <span className="jaSei"> Já sei a palavra</span>
       <input
+        data-test="guess-input"
         disabled={!props.start || props.win || props.lose}
+        value={props.guess}
         onChange={(e) => props.setGuess(e.target.value)}
         type="text"
         className="chuteInput"
         placeholder=""></input>
       <button
+        data-test="guess-button"
         disabled={!props.start}
         onClick={handleClick}
         className="chuteButton">
